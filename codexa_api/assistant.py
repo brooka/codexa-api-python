@@ -32,6 +32,10 @@ NO_SOURCES = "I couldn't find anything in the loaded sources for that. Try rephr
 _CITATION = re.compile(r"\[(\d{1,2})\]")
 
 
+class LLMError(Exception):
+    """Raised when the upstream language model fails to generate a response."""
+
+
 @dataclass
 class Completion:
     text: str
@@ -56,7 +60,10 @@ class GeminiLLM:
         config = types.GenerateContentConfig(
             system_instruction=system, temperature=0.3, max_output_tokens=2048, thinking_config=thinking
         )
-        response = self._client.models.generate_content(model=self.model, contents=prompt, config=config)
+        try:
+            response = self._client.models.generate_content(model=self.model, contents=prompt, config=config)
+        except Exception as e:
+            raise LLMError(f"Gemini API error: {e}") from e
         usage = response.usage_metadata
         return Completion(
             text=(response.text or "").strip(),

@@ -11,7 +11,7 @@ from fastapi.security import APIKeyHeader
 from langfuse import get_client
 from scalar_fastapi import get_scalar_api_reference
 
-from .assistant import Assistant, GeminiLLM
+from .assistant import Assistant, GeminiLLM, LLMError
 from .config import get_settings
 from .embedder import Embedder
 from .packs import load_packs
@@ -133,6 +133,7 @@ def create_app(
         tags=["Ask"],
         responses={
             401: {"description": "Missing or wrong API key"},
+            502: {"description": "Upstream AI provider error"},
             503: {"description": "/ask isn't set up"},
         },
     )
@@ -151,7 +152,10 @@ def create_app(
         """Retrieves the eight most relevant passages with hybrid search, then asks Gemini to answer
         using only those, citing them as [1], [2], …. Citations that match no passage are listed
         in `invalid_citations`."""
-        return assistant.ask(q)
+        try:
+            return assistant.ask(q)
+        except LLMError as err:
+            raise HTTPException(status_code=502, detail=str(err)) from err
 
     @app.get("/health", summary="Check the service", tags=["Service"])
     def health(request: Request, searcher: SearcherDep) -> Health:

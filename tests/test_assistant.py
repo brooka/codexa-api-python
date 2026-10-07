@@ -1,4 +1,6 @@
-from codexa_api.assistant import NO_SOURCES, Assistant, check_citations, fence
+import pytest
+
+from codexa_api.assistant import NO_SOURCES, Assistant, GeminiLLM, LLMError, check_citations, fence
 from codexa_api.search import Searcher
 
 from .conftest import FakeEmbedder, FakeLLM
@@ -31,3 +33,14 @@ def test_ask_with_no_sources_skips_the_model(llm):
     response = Assistant(Searcher([], FakeEmbedder()), llm).ask("anything")
     assert response.answer == NO_SOURCES
     assert llm.prompts == []
+
+
+def test_gemini_llm_raises_llm_error_on_failure(monkeypatch):
+    llm = GeminiLLM(api_key="test-key", model="gemini-3.1-flash-lite")
+
+    def fail(*_args, **_kwargs):
+        raise RuntimeError("Quota exceeded")
+
+    monkeypatch.setattr(llm._client.models, "generate_content", fail)
+    with pytest.raises(LLMError, match="Gemini API error"):
+        llm.complete("system", "prompt")
