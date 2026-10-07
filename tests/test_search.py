@@ -1,3 +1,5 @@
+from concurrent.futures import ThreadPoolExecutor
+
 import numpy as np
 
 from codexa_api.packs import to_int8
@@ -35,3 +37,11 @@ def test_hybrid_search_spans_packs_unless_filtered(searcher):
     verses = searcher.search(query, kind="verse")
     assert {h.work_id for h in verses} == {"kjv"}
     assert verses[0].ref == "Genesis 1:1"
+
+
+def test_concurrent_searches_match_serial_results(searcher):
+    queries = ["God created the heaven", "Jesus wept", "the LORD is my shepherd", "children mocked him"] * 100
+    expected = {q: searcher.search(q, mode="hybrid") for q in set(queries)}
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        results = list(pool.map(lambda q: (q, searcher.search(q, mode="hybrid")), queries))
+    assert all(hits == expected[q] for q, hits in results)

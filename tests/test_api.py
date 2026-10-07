@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 
+from codexa_api.assistant import Assistant, LLMError
 from codexa_api.main import create_app
 
 
@@ -37,7 +38,22 @@ def test_ask_requires_the_key_when_one_is_set(searcher, assistant):
         assert client.get("/ask", params={"q": "grace"}, headers={"X-API-Key": "s3cret"}).status_code == 200
 
 
+def test_ask_returns_502_when_llm_fails(searcher):
+    class FailingLLM:
+        model = "failing-model"
+
+        def complete(self, system: str, prompt: str):
+            raise LLMError("API quota exceeded")
+
+    assistant = Assistant(searcher, FailingLLM())
+    with TestClient(create_app(searcher, assistant)) as client:
+        response = client.get("/ask", params={"q": "creation"})
+        assert response.status_code == 502
+        assert "quota" not in response.json()["detail"]  # provider details stay in the server log
+
+
 def test_docs_and_schema_are_served(client):
     assert "<html" in client.get("/docs").text.lower()
     schema = client.get("/openapi.json").json()
     assert schema["components"]["securitySchemes"]["APIKeyHeader"]["name"] == "X-API-Key"
+    assert "502" in schema["paths"]["/ask"]["get"]["responses"]

@@ -1,4 +1,16 @@
-from codexa_api.assistant import NO_SOURCES, Assistant, check_citations, fence
+import httpx
+import pytest
+from google.genai import errors
+
+from codexa_api.assistant import (
+    GEMINI_TIMEOUT_MS,
+    NO_SOURCES,
+    Assistant,
+    GeminiLLM,
+    LLMError,
+    check_citations,
+    fence,
+)
 from codexa_api.search import Searcher
 
 from .conftest import FakeEmbedder, FakeLLM
@@ -31,3 +43,39 @@ def test_ask_with_no_sources_skips_the_model(llm):
     response = Assistant(Searcher([], FakeEmbedder()), llm).ask("anything")
     assert response.answer == NO_SOURCES
     assert llm.prompts == []
+
+
+@pytest.mark.parametrize(
+    "failure",
+    [
+        errors.ClientError(429, {"error": {"message": "Quota exceeded", "status": "RESOURCE_EXHAUSTED"}}),
+        httpx.ReadTimeout("timed out"),
+    ],
+)
+def test_gemini_llm_wraps_provider_failures(monkeypatch, failure):
+    llm = GeminiLLM(api_key="test-key", model="gemini-3.1-flash-lite")
+
+    def fail(**_):
+        raise failure
+
+    monkeypatch.setattr(llm._client.models, "generate_content", fail)
+    with pytest.raises(LLMError):
+        llm.complete("system", "prompt")
+
+
+def test_gemini_llm_does_not_hide_its_own_bugs(monkeypatch):
+    llm = GeminiLLM(api_key="test-key", model="gemini-3.1-flash-lite")
+
+    def fail(**_):
+        raise TypeError("bad config")
+
+    monkeypatch.setattr(llm._client.models, "generate_content", fail)
+    with pytest.raises(TypeError):
+        llm.complete("system", "prompt")
+
+
+def test_gemini_requests_time_out(monkeypatch):
+    seen = {}
+    monkeypatch.setattr("codexa_api.assistant.genai.Client", lambda **kwargs: seen.update(kwargs))
+    GeminiLLM(api_key="test-key", model="gemini-3.1-flash-lite")
+    assert seen["http_options"].timeout == GEMINI_TIMEOUT_MS

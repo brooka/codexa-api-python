@@ -7,6 +7,7 @@ every text's embedding stored as Int8 in one blob. packs.json lists the packs wi
 import json
 import re
 import sqlite3
+import threading
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -60,6 +61,7 @@ class Pack:
         self.work_id = work_id
         self.type = type
         self.label = LABELS.get(work_id, work_id)
+        self._lock = threading.Lock()
         self._db = sqlite3.connect(f"file:{path}?mode=ro", uri=True, check_same_thread=False)
         count, dim = self._db.execute("SELECT count, dim FROM meta").fetchone()
         (blob,) = self._db.execute("SELECT data FROM vectors WHERE id = 0").fetchone()
@@ -71,9 +73,10 @@ class Pack:
         if not words:
             return []
         match = " OR ".join(f'"{w}"' for w in words)
-        rows = self._db.execute(
-            "SELECT rowid FROM verses_fts WHERE verses_fts MATCH ? ORDER BY rank LIMIT ?", (match, k)
-        )
+        with self._lock:
+            rows = self._db.execute(
+                "SELECT rowid FROM verses_fts WHERE verses_fts MATCH ? ORDER BY rank LIMIT ?", (match, k)
+            ).fetchall()
         return [row[0] for row in rows]
 
     def semantic(self, query: np.ndarray, k: int) -> list[tuple[int, int]]:
@@ -83,7 +86,8 @@ class Pack:
         return [(int(i), int(scores[i])) for i in top]
 
     def hit(self, position: int, score: float) -> Hit:
-        ref, text = self._db.execute("SELECT ref, text FROM verses WHERE ord = ?", (position,)).fetchone()
+        with self._lock:
+            ref, text = self._db.execute("SELECT ref, text FROM verses WHERE ord = ?", (position,)).fetchone()
         return Hit(self.work_id, self.label, self.type, ref, text, score)
 
 
