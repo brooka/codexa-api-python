@@ -39,11 +39,9 @@ def test_hybrid_search_spans_packs_unless_filtered(searcher):
     assert verses[0].ref == "Genesis 1:1"
 
 
-def test_search_is_thread_safe(searcher):
-    def run_query():
-        return searcher.search("God created the heaven", mode="hybrid")
-
-    with ThreadPoolExecutor(max_workers=8) as pool:
-        futures = [pool.submit(run_query) for _ in range(20)]
-        results = [f.result() for f in futures]
-    assert all(len(r) > 0 for r in results)
+def test_concurrent_searches_match_serial_results(searcher):
+    queries = ["God created the heaven", "Jesus wept", "the LORD is my shepherd", "children mocked him"] * 100
+    expected = {q: searcher.search(q, mode="hybrid") for q in set(queries)}
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        results = list(pool.map(lambda q: (q, searcher.search(q, mode="hybrid")), queries))
+    assert all(hits == expected[q] for q, hits in results)

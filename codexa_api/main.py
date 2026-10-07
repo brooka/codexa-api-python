@@ -1,5 +1,6 @@
 """The HTTP API. Run it with: uvicorn codexa_api.main:app"""
 
+import logging
 import secrets
 from contextlib import asynccontextmanager
 from dataclasses import asdict
@@ -29,6 +30,8 @@ the passages found, with numbered citations.
 
 Source: [github.com/brooka/codexa-api-python](https://github.com/brooka/codexa-api-python)
 """
+
+logger = logging.getLogger(__name__)
 
 api_key_header = APIKeyHeader(
     name="X-API-Key", auto_error=False, description="Required by /ask when the server sets a key."
@@ -154,8 +157,12 @@ def create_app(
         in `invalid_citations`."""
         try:
             return assistant.ask(q)
-        except LLMError as err:
-            raise HTTPException(status_code=502, detail=str(err)) from err
+        except LLMError:
+            # The provider's message can name keys, quotas or projects: log it, don't return it.
+            logger.exception("/ask: the model provider failed")
+            raise HTTPException(
+                status_code=502, detail="The answer service is unavailable. Try again later."
+            ) from None
 
     @app.get("/health", summary="Check the service", tags=["Service"])
     def health(request: Request, searcher: SearcherDep) -> Health:

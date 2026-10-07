@@ -49,7 +49,7 @@ def test_ask_returns_502_when_llm_fails(searcher):
     with TestClient(create_app(searcher, assistant)) as client:
         response = client.get("/ask", params={"q": "creation"})
         assert response.status_code == 502
-        assert "API quota exceeded" in response.json()["detail"]
+        assert "quota" not in response.json()["detail"]  # provider details stay in the server log
 
 
 def test_docs_and_schema_are_served(client):
