@@ -1,0 +1,506 @@
+[
+  {
+    "id": "bald",
+    "query": "the verse where kids make fun of a bald man and get mauled by bears",
+    "expect": [
+      "2 Kings 2:23",
+      "2 Kings 2:24"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "call-father",
+    "query": "teaching that you should not call anyone on earth your father",
+    "expect": [
+      "Matthew 23:9"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "talking-donkey",
+    "query": "the story where a donkey speaks to its owner",
+    "expect": [
+      "Numbers 22:28",
+      "Numbers 22:30"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "fat-king",
+    "query": "a left-handed man stabs an obese king and the blade is swallowed by his fat",
+    "expect": [
+      "Judges 3:21",
+      "Judges 3:22"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "sun-stands",
+    "query": "when the sun stopped moving in the sky during a battle",
+    "expect": [
+      "Joshua 10:13"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "bones-revive",
+    "query": "a dead body comes back to life after touching a prophet's bones",
+    "expect": [
+      "2 Kings 13:21"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "salt-pillar",
+    "query": "a woman looks back at a burning city and turns into a pillar of salt",
+    "expect": [
+      "Genesis 19:26"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "wrestle-god",
+    "query": "a man wrestles with God all night and his hip is injured",
+    "expect": [
+      "Genesis 32:24",
+      "Genesis 32:25"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "writing-wall",
+    "query": "mysterious fingers write words on a palace wall during a feast",
+    "expect": [
+      "Daniel 5:5"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "spit-mud-eyes",
+    "query": "Jesus heals a blind man by making mud with saliva",
+    "expect": [
+      "John 9:6"
+    ],
+    "category": "oblique"
+  },
+  {
+    "id": "john316",
+    "query": "God loved humanity so much he gave his only son so believers won't perish",
+    "expect": [
+      "John 3:16"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "ps23",
+    "query": "the Lord takes care of me like a shepherd so I lack nothing",
+    "expect": [
+      "Psalms 23:1"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "john11",
+    "query": "at the very beginning the Word existed and the Word was God",
+    "expect": [
+      "John 1:1"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "gen11",
+    "query": "how God first created the heavens and the earth",
+    "expect": [
+      "Genesis 1:1"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "phil413",
+    "query": "I am able to do everything through the one who strengthens me",
+    "expect": [
+      "Philippians 4:13"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "jer2911",
+    "query": "God has plans to give you a hopeful future and not to harm you",
+    "expect": [
+      "Jeremiah 29:11"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "rom828",
+    "query": "everything works together for good for those who love God",
+    "expect": [
+      "Romans 8:28"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "prov35",
+    "query": "trust God completely and don't rely on your own understanding",
+    "expect": [
+      "Proverbs 3:5",
+      "Proverbs 3:6"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "isa4031",
+    "query": "those who hope in the Lord will renew their strength and soar like eagles",
+    "expect": [
+      "Isaiah 40:31"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "john146",
+    "query": "Jesus says he is the way the truth and the life",
+    "expect": [
+      "John 14:6"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "eph28",
+    "query": "you are saved by grace through faith, not by your own works",
+    "expect": [
+      "Ephesians 2:8",
+      "Ephesians 2:9"
+    ],
+    "category": "famous"
+  },
+  {
+    "id": "love-enemies",
+    "query": "command to love the people who hate and persecute you",
+    "expect": [
+      "Matthew 5:44",
+      "Luke 6:27",
+      "Luke 6:35"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "other-cheek",
+    "query": "if someone hits you offer them the other side of your face",
+    "expect": [
+      "Matthew 5:39",
+      "Luke 6:29"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "fruit-spirit",
+    "query": "the qualities like love joy peace patience that the Spirit produces",
+    "expect": [
+      "Galatians 5:22",
+      "Galatians 5:23"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "love-patient",
+    "query": "love is patient love is kind it does not envy or boast",
+    "expect": [
+      "1 Corinthians 13:4"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "armor-god",
+    "query": "put on the full armor of God to stand against the devil",
+    "expect": [
+      "Ephesians 6:11",
+      "Ephesians 6:13"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "anxious",
+    "query": "do not worry about anything but pray about everything",
+    "expect": [
+      "Philippians 4:6"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "faith-works",
+    "query": "faith by itself without actions is dead",
+    "expect": [
+      "James 2:17",
+      "James 2:20",
+      "James 2:26"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "love-money",
+    "query": "the love of money is the root of all kinds of evil",
+    "expect": [
+      "1 Timothy 6:10"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "pride-fall",
+    "query": "pride comes right before a person's downfall",
+    "expect": [
+      "Proverbs 16:18"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "train-child",
+    "query": "raise a child in the right way and they won't depart from it",
+    "expect": [
+      "Proverbs 22:6"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "iron-iron",
+    "query": "one person sharpens another the way iron sharpens iron",
+    "expect": [
+      "Proverbs 27:17"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "judge-not",
+    "query": "do not judge others or you will be judged the same way",
+    "expect": [
+      "Matthew 7:1",
+      "Matthew 7:2"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "ask-given",
+    "query": "ask and it will be given, seek and you will find, knock and it opens",
+    "expect": [
+      "Matthew 7:7",
+      "Matthew 7:8"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "wages-sin",
+    "query": "the payment for sin is death but God's gift is eternal life",
+    "expect": [
+      "Romans 6:23"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "all-sinned",
+    "query": "everyone has sinned and fallen short of God's glory",
+    "expect": [
+      "Romans 3:23"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "be-still",
+    "query": "be still and know that I am God",
+    "expect": [
+      "Psalms 46:10"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "time-everything",
+    "query": "there is a season and a time for every activity under heaven",
+    "expect": [
+      "Ecclesiastes 3:1"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "meek-inherit",
+    "query": "the gentle and humble will inherit the earth",
+    "expect": [
+      "Matthew 5:5"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "render-caesar",
+    "query": "give to Caesar what belongs to Caesar and to God what is God's",
+    "expect": [
+      "Matthew 22:21",
+      "Mark 12:17",
+      "Luke 20:25"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "truth-free",
+    "query": "you will know the truth and the truth will set you free",
+    "expect": [
+      "John 8:32"
+    ],
+    "category": "topical"
+  },
+  {
+    "id": "david-goliath",
+    "query": "a young shepherd boy kills a giant warrior with a sling and a stone",
+    "expect": [
+      "1 Samuel 17:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "jonah-fish",
+    "query": "a man is swallowed by a great fish and survives three days",
+    "expect": [
+      "Jonah 1:17",
+      "Jonah 2:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "lions-den",
+    "query": "a man is thrown into a den of lions but God shuts their mouths",
+    "expect": [
+      "Daniel 6:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "flood-ark",
+    "query": "God floods the earth and a family survives in a giant boat with animals",
+    "expect": [
+      "Genesis 6:",
+      "Genesis 7:",
+      "Genesis 8:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "burning-bush",
+    "query": "God speaks to Moses from a bush that burns but is not consumed",
+    "expect": [
+      "Exodus 3:2",
+      "Exodus 3:4"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "red-sea",
+    "query": "the sea splits in two so the Israelites can cross on dry ground",
+    "expect": [
+      "Exodus 14:21",
+      "Exodus 14:22"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "feed-5000",
+    "query": "Jesus feeds thousands of people with five loaves and two fish",
+    "expect": [
+      "Matthew 14:",
+      "Mark 6:",
+      "Luke 9:",
+      "John 6:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "water-wine",
+    "query": "Jesus turns water into wine at a wedding",
+    "expect": [
+      "John 2:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "lazarus",
+    "query": "Jesus raises a man named Lazarus from the dead after four days",
+    "expect": [
+      "John 11:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "prodigal",
+    "query": "a son wastes his inheritance then returns home and the father celebrates",
+    "expect": [
+      "Luke 15:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "samaritan",
+    "query": "a despised foreigner helps a beaten stranger that others ignored",
+    "expect": [
+      "Luke 10:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "damascus",
+    "query": "a man persecuting Christians is blinded by a light and converts",
+    "expect": [
+      "Acts 9:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "walk-water",
+    "query": "Jesus walks on the water of the lake toward the disciples' boat",
+    "expect": [
+      "Matthew 14:",
+      "Mark 6:",
+      "John 6:"
+    ],
+    "category": "narrative"
+  },
+  {
+    "id": "ten-cmds",
+    "query": "God gives Moses the ten commandments on the mountain",
+    "expect": [
+      "Exodus 20:",
+      "Exodus 34:",
+      "Deuteronomy 5:",
+      "Deuteronomy 10:4"
+    ],
+    "category": "law-prophets"
+  },
+  {
+    "id": "shema",
+    "query": "hear O Israel the Lord our God the Lord is one",
+    "expect": [
+      "Deuteronomy 6:4"
+    ],
+    "category": "law-prophets"
+  },
+  {
+    "id": "dry-bones",
+    "query": "a vision of a valley full of dry bones coming back to life",
+    "expect": [
+      "Ezekiel 37:"
+    ],
+    "category": "law-prophets"
+  },
+  {
+    "id": "furnace",
+    "query": "three men thrown into a blazing furnace are unharmed",
+    "expect": [
+      "Daniel 3:"
+    ],
+    "category": "law-prophets"
+  },
+  {
+    "id": "eye-for-eye",
+    "query": "the law of an eye for an eye and a tooth for a tooth",
+    "expect": [
+      "Exodus 21:24",
+      "Leviticus 24:20",
+      "Matthew 5:38"
+    ],
+    "category": "law-prophets"
+  }
+]
